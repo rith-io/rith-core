@@ -47,6 +47,12 @@ CORE_MODULES = [
 ]
 
 
+SYSTEM_FILES = [
+    '__init__.py',
+    '__pycache__'
+]
+
+
 class Application(object):
     """Create Flask Application via a Class."""
 
@@ -350,19 +356,23 @@ class Application(object):
         modules_list = {}
         definition_list = []
 
+        print("modules_directory", modules_directory)
+
         for module_name in modules_directory:
 
             module_path = os.path.join(modules_path, module_name)
             module_package = os.path.join(modules_path, module_name,
                                           '__init__.py')
 
-            if os.path.isdir(module_path):
+            if os.path.isdir(module_path) and \
+               module_name not in SYSTEM_FILES:
 
                 """Locate and load the module into our module_list
                 """
                 try:
                     f, filename, descr = imp.find_module(module_name,
                                                          [modules_path])
+
                     modules_list[module_name] = imp.load_module(module_name,
                                                                 f, filename,
                                                                 descr)
