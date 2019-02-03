@@ -11,12 +11,12 @@ limitations under the License.
 """
 
 
-import app
+import arith
 import unittest
 
 
 class AppTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = app.create_application(environment="testing")
+        self.app = arith.create_application(environment="testing")
         self.client = self.app.test_client()
