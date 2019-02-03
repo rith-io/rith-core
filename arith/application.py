@@ -187,33 +187,33 @@ class Application(object):
         See the official Flask Mail documentation for more information
         https://pythonhosted.org/Flask-Mail/
         """
-        if 'MODULE_MAIL_ENABLED' in self.app.config \and
-           self.app.config['MODULE_MAIL_ENABLED']:
-            self.extensions['mail'] = Mail()
-            self.extensions['mail'].init_app(self.app)
-
-        """Setup OAuth 2.0
-
-        See the official Flask OAuthlib documentation for more information
-        https://flask-oauthlib.readthedocs.org/en/latest/
-        """
-        if self.app.config['MODULE_OAUTH_ENABLED']:
-            oauth.init_app(self.app)
-
-        """Setup Security
-
-        @todo it is possible that we will want to incorporate this into it's
-        own module so that it is not instantiated until a little later OR
-        at least until we import our own "Security" module
-        """
-        if self.app.config['MODULE_SECURITY_ENABLED']:
-            from app.schema.user import user_datastore
-
-            self.extensions['security'] = Security()
-            self.extensions['security'].init_app(self.app, user_datastore)
-
-            self.assign_default_user_role(self.app, db, user_datastore,
-                                          'generic')
+        # if 'MODULE_MAIL_ENABLED' in self.app.config \and
+        #    self.app.config['MODULE_MAIL_ENABLED']:
+        #     self.extensions['mail'] = Mail()
+        #     self.extensions['mail'].init_app(self.app)
+        #
+        # """Setup OAuth 2.0
+        #
+        # See the official Flask OAuthlib documentation for more information
+        # https://flask-oauthlib.readthedocs.org/en/latest/
+        # """
+        # if self.app.config['MODULE_OAUTH_ENABLED']:
+        #     oauth.init_app(self.app)
+        #
+        # """Setup Security
+        #
+        # @todo it is possible that we will want to incorporate this into it's
+        # own module so that it is not instantiated until a little later OR
+        # at least until we import our own "Security" module
+        # """
+        # if self.app.config['MODULE_SECURITY_ENABLED']:
+        #     from app.schema.user import user_datastore
+        #
+        #     self.extensions['security'] = Security()
+        #     self.extensions['security'].init_app(self.app, user_datastore)
+        #
+        #     self.assign_default_user_role(self.app, db, user_datastore,
+        #                                   'generic')
 
     def setup_database(self):
         r"""Setup all database schemas."""
