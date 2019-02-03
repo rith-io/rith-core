@@ -1,4 +1,4 @@
-(https://travis-ci.org/joshuapowell/arith)[<img src="https://travis-ci.org/joshuapowell/arith.svg?branch=master" />]
+[<img src="https://travis-ci.org/joshuapowell/arith.svg?branch=master" />](https://travis-ci.org/joshuapowell/arith)
 
 # Arith Data API
 An open-source geospatial API
