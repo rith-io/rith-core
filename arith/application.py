@@ -432,4 +432,4 @@ class Application(object):
 
         with io.open(filepath_, "w", encoding="utf-8") as file_:
             data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
-            file_.write(unicode(data_))
+            file_.write(str(data_))
