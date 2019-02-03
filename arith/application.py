@@ -37,7 +37,6 @@ from . import logging
 from . import Mail
 from . import oauth
 from . import os
-from . import sentry
 from . import Security
 
 
@@ -125,10 +124,10 @@ class Application(object):
         """
         logger.info('Application searching for automated error reporting')
 
-        if 'SENTRY_DSN' in self.app.config:
-            sentry.init_app(self.app, dsn=self.app.config['SENTRY_DSN'],
-                            logging=True, level=logging.ERROR)
-            logger.info("Application has successfully loaded Sentry")
+        # if 'SENTRY_DSN' in self.app.config:
+        #     sentry.init_app(self.app, dsn=self.app.config['SENTRY_DSN'],
+        #                     logging=True, level=logging.ERROR)
+        #     logger.info("Application has successfully loaded Sentry")
 
     def setup_cors(self, response):
         r"""Define global Cross Origin Resource Sharing rules.

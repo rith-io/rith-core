@@ -37,9 +37,6 @@ from flask_security import Security
 from flask_oauthlib.provider import OAuth2Provider
 
 
-from raven.contrib.flask import Sentry
-
-
 from . import responses
 
 
@@ -75,12 +72,6 @@ See the official SQLAlchemy documentation for more information
 http://docs.sqlalchemy.org/en/latest/
 """
 db = SQLAlchemy()
-
-
-"""Setup Sentry tracking.
-
-"""
-sentry = Sentry()
 
 
 """OAuth Authorization.

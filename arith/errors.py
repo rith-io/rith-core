@@ -18,7 +18,6 @@ under the License.
 
 from . import logger
 from . import responses
-from . import sentry
 
 
 from werkzeug.exceptions import BadRequestKeyError
@@ -104,8 +103,8 @@ class ErrorHandlers(object):
             logger.error('ErrorHandler Exception %s', error)
 
             message = self.find_message(error)
-            if sentry:
-                sentry.captureException()
+            # if sentry:
+            #     sentry.captureException()
 
             return responses.status_400(message), 400
 
@@ -115,8 +114,8 @@ class ErrorHandlers(object):
             logger.error('ErrorHandler Exception %s', error)
 
             message = self.find_message(error)
-            if sentry:
-                sentry.captureException()
+            # if sentry:
+            #     sentry.captureException()
 
             return responses.status_401(message), 401
 
@@ -126,8 +125,8 @@ class ErrorHandlers(object):
             logger.error('ErrorHandler Exception %s', error)
 
             message = self.find_message(error)
-            if sentry:
-                sentry.captureException()
+            # if sentry:
+            #     sentry.captureException()
 
             return responses.status_403(message), 403
 
@@ -136,8 +135,8 @@ class ErrorHandlers(object):
             logger.error('ErrorHandler Exception %s', error)
 
             message = self.find_message(error)
-            if sentry:
-                sentry.captureException()
+            # if sentry:
+            #     sentry.captureException()
 
             return responses.status_404(message), 404
 
@@ -146,8 +145,8 @@ class ErrorHandlers(object):
             logger.error('ErrorHandler Exception %s', error)
 
             message = self.find_message(error)
-            if sentry:
-                sentry.captureException()
+            # if sentry:
+            #     sentry.captureException()
 
             return responses.status_405(message), 405
 
@@ -156,8 +155,8 @@ class ErrorHandlers(object):
             logger.error('ErrorHandler Exception %s', error)
 
             message = self.find_message(error)
-            if sentry:
-                sentry.captureException()
+            # if sentry:
+            #     sentry.captureException()
 
             return responses.status_410(message), 410
 
@@ -166,8 +165,8 @@ class ErrorHandlers(object):
             logger.error('ErrorHandler Exception %s', error)
 
             message = self.find_message(error)
-            if sentry:
-                sentry.captureException()
+            # if sentry:
+            #     sentry.captureException()
 
             return responses.status_500(message), 500
 
@@ -198,7 +197,7 @@ class ErrorHandlers(object):
             logger.error('OAuth Exception %s', error)
 
             message = self.find_message(error)
-            if sentry:
-                sentry.captureException()
+            # if sentry:
+            #     sentry.captureException()
 
             return responses.status_500(message), 500
