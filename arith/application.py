@@ -89,10 +89,7 @@ class Application(object):
 
         """Read the JSON configuration file content.
         """
-        try:
-            self.app.config.from_json(_config)
-        except:
-            logger.error('Unable to load configuration file %s', _config)
+        self.app.config.from_json(_config)
 
         logger.info('Application loading configuration from %s', _config)
 
@@ -126,7 +123,7 @@ class Application(object):
 
         @return (None)
         """
-        logger.info('Application searching for automated error reporting tools')
+        logger.info('Application searching for automated error reporting')
 
         if 'SENTRY_DSN' in self.app.config:
             sentry.init_app(self.app, dsn=self.app.config['SENTRY_DSN'],
@@ -279,7 +276,7 @@ class Application(object):
 
             if hasattr(Module, 'Model'):
 
-                module_arguments  = Module.endpoints.Seed().__arguments__
+                module_arguments = Module.endpoints.Seed().__arguments__
 
                 with self.app.app_context():
                     manager.create_api(Module.Model, **module_arguments)
@@ -316,27 +313,27 @@ class Application(object):
         :param object self: The Application class
         :param object Module: The of module containing endpoint
         """
-        # if hasattr(Module, 'Model') and hasattr(Module.Model, '__def__'):
-        #
-        #     filename_ = str(Module.Model.__tablename__)
-        #     filepath_ = ('app/static/models/%s.json') % (filename_)
-        #     filedata_ = {
-        #         "machine_name": filename_,
-        #         "display_name": Module.Model.__name__,
-        #         "access": Module.Model.__def__.get('access'),
-        #         "fields": Module.Model.__def__.get('fields'),
-        #         "groups": Module.Model.__def__.get('groups'),
-        #     }
-        #
-        #     with io.open(filepath_, "w", encoding="utf-8") as file_:
-        #         data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
-        #         file_.write(unicode(data_))
-        #
-        #     return filedata_
-        #
-        # else:
-        #     logger.info('`%s` module did not contain any model definitions.' %
-        #                 (Module.__name__))
+        if hasattr(Module, 'Model') and hasattr(Module.Model, '__def__'):
+
+            filename_ = str(Module.Model.__tablename__)
+            filepath_ = ('app/static/models/%s.json') % (filename_)
+            filedata_ = {
+                "machine_name": filename_,
+                "display_name": Module.Model.__name__,
+                "access": Module.Model.__def__.get('access'),
+                "fields": Module.Model.__def__.get('fields'),
+                "groups": Module.Model.__def__.get('groups'),
+            }
+
+            with io.open(filepath_, "w", encoding="utf-8") as file_:
+                data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
+                file_.write(unicode(data_))
+
+            return filedata_
+
+        else:
+            logger.info('`%s` module did not contain any model definitions.' %
+                        (Module.__name__))
 
     def load_modules(self):
         """Load all application modules.
@@ -394,7 +391,7 @@ class Application(object):
                     logger.info('Application successfully loaded `%s` module' %
                                 (module_name))
 
-                    """Load any endpoints that are contained within this module.
+                    """Load any endpoints contained within this module.
 
                     Use the Application.load_endpoint method to instantiate any
                     endpoints contained within the module.
@@ -422,17 +419,17 @@ class Application(object):
         """Create a single structure file that can be served to include
         information about this application.
         """
-        # filepath_ = ('arith/static/models/all.json')
-        # filedata_ = {
-        #     "application": {
-        #         "name": self.app.config['APP_NAME'],
-        #         "description": self.app.config['APP_DESCRIPTION'],
-        #         "license": self.app.config['APP_LICENSE'],
-        #         "version": self.app.config['APP_VERSION'],
-        #     },
-        #     "templates": definition_list
-        # }
-        #
-        # with io.open(filepath_, "w", encoding="utf-8") as file_:
-        #     data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
-        #     file_.write(unicode(data_))
+        filepath_ = ('arith/static/models/all.json')
+        filedata_ = {
+            "application": {
+                "name": self.app.config['APP_NAME'],
+                "description": self.app.config['APP_DESCRIPTION'],
+                "license": self.app.config['APP_LICENSE'],
+                "version": self.app.config['APP_VERSION'],
+            },
+            "templates": definition_list
+        }
+
+        with io.open(filepath_, "w", encoding="utf-8") as file_:
+            data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
+            file_.write(unicode(data_))
