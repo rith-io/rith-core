@@ -35,7 +35,7 @@ pydocstyle==3.0.0
 python-dateutil==2.7.5
 python-mimeparse==1.6.0
 pytz==2018.9
-PyYAML==3.13
+PyYAML==4.2b1
 requests==2.21.0
 requests-oauthlib==1.2.0
 six==1.12.0
