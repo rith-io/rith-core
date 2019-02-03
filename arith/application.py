@@ -78,9 +78,8 @@ class Application(object):
 
         """Create our base Flask application
         """
-        self.app = flask.Flask(__name__)
-
         logger.info('Starting application named `%s`' % __name__)
+        self.app = flask.Flask(__name__)
 
         """Import all custom app configurations
         """
@@ -88,13 +87,12 @@ class Application(object):
 
         """Read the JSON configuration file content.
         """
-        self.app.config.from_json(_config)
-
         logger.info('Application loading configuration from %s', _config)
+        self.app.config.from_json(_config)
 
         """Setup Cross Site Origin header rules
         """
-        self.app.after_request(self.setup_cors)
+        self.app.after_request(self.setup_default_cors)
 
         """Load system extensions
         """
@@ -129,7 +127,7 @@ class Application(object):
         #                     logging=True, level=logging.ERROR)
         #     logger.info("Application has successfully loaded Sentry")
 
-    def setup_cors(self, response):
+    def setup_default_cors(self, response):
         r"""Define global Cross Origin Resource Sharing rules.
 
         Setup our headers so that the respond correctly and securely
