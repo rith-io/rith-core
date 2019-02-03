@@ -218,17 +218,15 @@ class Application(object):
                                           'generic')
 
     def setup_database(self):
-        r"""Setup all database schemas."""
+        r"""Created all database tables."""
         logger.info('Application is setting up database')
 
-        """Setup the database and associate it with the application
-        """
         db.app = self.app
         db.init_app(self.app)
 
         """Create all database tables
 
-        Create all of the database tables defined with the modules
+        Create all of the database tables defined with the modules.
         """
         db.create_all()
 
