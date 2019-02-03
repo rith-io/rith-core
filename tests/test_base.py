@@ -18,5 +18,5 @@ import unittest
 class AppTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = None
-        self.assertIsNone(self.app)
+        self.app = app.create_application(environment="testing")
+        self.client = self.app.test_client()
