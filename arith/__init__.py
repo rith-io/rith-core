@@ -14,3 +14,12 @@ implied.
 See the License for the specific language governing permission and limitations
 under the License.
 """
+
+
+__author__ = 'Joshua I. Powell'
+__copyright__ = 'Copyright 2017 Joshua Powell, L.L.C. All rights reserved.'
+__date__ = '2019-02-02'
+__license__ = 'MIT'
+__organization__ = 'Joshua Powell, L.L.C.'
+__status__ = 'Production'
+__version__ = '1.0.0'
