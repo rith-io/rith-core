@@ -92,23 +92,23 @@ class Application(object):
 
         """Setup Cross Site Origin header rules
         """
-        self.app.after_request(self.setup_cors)
+        # self.app.after_request(self.setup_cors)
 
         """Load system extensions
         """
-        self.load_extensions()
+        # self.load_extensions()
 
         """Load system modules
         """
-        self.load_modules()
+        # self.load_modules()
 
         """Setup the Database
         """
-        self.setup_database()
+        # self.setup_database()
 
         """Setup the Diagnostics
         """
-        self.setup_diagnostics()
+        # self.setup_diagnostics()
 
         logger.info('Application setup complete')
 
@@ -187,7 +187,8 @@ class Application(object):
         See the official Flask Mail documentation for more information
         https://pythonhosted.org/Flask-Mail/
         """
-        if self.app.config['MODULE_MAIL_ENABLED']:
+        if 'MODULE_MAIL_ENABLED' in self.app.config \and
+           self.app.config['MODULE_MAIL_ENABLED']:
             self.extensions['mail'] = Mail()
             self.extensions['mail'].init_app(self.app)
 
@@ -412,7 +413,7 @@ class Application(object):
         """Create a single structure file that can be served to include
         information about this application.
         """
-        filepath_ = ('app/static/models/all.json')
+        filepath_ = ('arith/static/models/all.json')
         filedata_ = {
             "application": {
                 "name": self.app.config['APP_NAME'],
