@@ -26,3 +26,8 @@ following command in the API root.
 ```
 virtualenv -p python3 venv
 ```
+
+### Start Development Environment
+```
+FLASK_APP=arith:create_application flask run
+```

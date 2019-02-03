@@ -23,3 +23,96 @@ __license__ = 'MIT'
 __organization__ = 'Joshua Powell, L.L.C.'
 __status__ = 'Production'
 __version__ = '1.0.0'
+
+
+import flask
+import imp
+import logging
+import os
+
+
+from flask_sqlalchemy import SQLAlchemy
+
+
+from raven.contrib.flask import Sentry
+
+
+from . import responses
+
+
+"""System Logging.
+
+System logging enables us to retain useful activity within the system in
+server logs. Log messages are written to the Terminal or Application Runner
+(e.g., Supervisor) server logs.
+
+Below sets up the `basicConfig` which opens a stream that allows us to add
+formatted log messages to the root logger.
+
+@param (object) logger
+    Provides the ability to write directly to the logger with the info(),
+    warning(), error(), and critical() methods
+
+See the official Python::logging documentation for more Information
+https://docs.python.org/2/library/logging.html
+"""
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+
+"""Setup Database.
+
+Initializes the object relational mapper (ORM) that allows the application to
+communicate directly with the database.
+
+:param object db:
+    The instantiated SQLAlchemy instance
+
+See the official SQLAlchemy documentation for more information
+http://docs.sqlalchemy.org/en/latest/
+"""
+db = SQLAlchemy()
+
+
+"""Setup Sentry tracking.
+
+"""
+sentry = Sentry()
+
+
+"""Consisitent System-wide Responses.
+Initializes Viable's Response library for returning consistent HTTP Responses
+in JSON format.
+No official documentation yet exists.
+"""
+responses = responses.Responses()
+
+
+def create_application(environment='production'):
+    """Production Application Runner."""
+    from . import application
+    from . import errors
+
+    """Instantiate the Application
+
+    Setup the basic Application class in order to instantiate the rest of
+    the Application
+
+    @param (str) name
+        The name of the Application
+    @param (str) envioronment
+        The desired environment configuration to start the application on
+    """
+    instance = application.Application(
+        name="__main__",
+        environment=environment
+    )
+
+    """Instaniate App-level error handling
+
+    :param object app: Instantiated app object
+    """
+    errors = errors.ErrorHandlers(instance.app)
+    errors.load_errorhandler(instance.app)
+
+    return instance.app
