@@ -1,3 +1,5 @@
+<img src="https://travis-ci.org/joshuapowell/arith.svg?branch=master" />
+
 # Arith
 An open-source geospatial API
 
