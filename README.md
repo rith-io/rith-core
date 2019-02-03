@@ -1,4 +1,6 @@
-<img src="https://travis-ci.org/joshuapowell/arith.svg?branch=master" />
+<a href="https://travis-ci.org/joshuapowell/arith" target="_blank">
+  <img src="https://travis-ci.org/joshuapowell/arith.svg?branch=master" />
+</a>
 
 # Arith Data API
 An open-source geospatial API
