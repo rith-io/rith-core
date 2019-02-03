@@ -92,23 +92,23 @@ class Application(object):
 
         """Setup Cross Site Origin header rules
         """
-        # self.app.after_request(self.setup_cors)
+        self.app.after_request(self.setup_cors)
 
         """Load system extensions
         """
-        # self.load_extensions()
+        self.load_extensions()
 
         """Load system modules
         """
-        # self.load_modules()
+        self.load_modules()
 
         """Setup the Database
         """
-        # self.setup_database()
+        self.setup_database()
 
         """Setup the Diagnostics
         """
-        # self.setup_diagnostics()
+        self.setup_diagnostics()
 
         logger.info('Application setup complete')
 
@@ -187,8 +187,7 @@ class Application(object):
         See the official Flask Mail documentation for more information
         https://pythonhosted.org/Flask-Mail/
         """
-        if 'MODULE_MAIL_ENABLED' in self.app.config \and
-           self.app.config['MODULE_MAIL_ENABLED']:
+        if self.app.config['MODULE_MAIL_ENABLED']:
             self.extensions['mail'] = Mail()
             self.extensions['mail'].init_app(self.app)
 
@@ -206,14 +205,14 @@ class Application(object):
         own module so that it is not instantiated until a little later OR
         at least until we import our own "Security" module
         """
-        # if self.app.config['MODULE_SECURITY_ENABLED']:
-        #     from app.schema.user import user_datastore
-        #
-        #     self.extensions['security'] = Security()
-        #     self.extensions['security'].init_app(self.app, user_datastore)
-        #
-        #     self.assign_default_user_role(self.app, db, user_datastore,
-        #                                   'generic')
+        if self.app.config['MODULE_SECURITY_ENABLED']:
+            from app.schema.user import user_datastore
+
+            self.extensions['security'] = Security()
+            self.extensions['security'].init_app(self.app, user_datastore)
+
+            self.assign_default_user_role(self.app, db, user_datastore,
+                                          'generic')
 
     def setup_database(self):
         r"""Setup all database schemas."""
@@ -311,27 +310,27 @@ class Application(object):
         :param object self: The Application class
         :param object Module: The of module containing endpoint
         """
-        if hasattr(Module, 'Model') and hasattr(Module.Model, '__def__'):
-
-            filename_ = str(Module.Model.__tablename__)
-            filepath_ = ('app/static/models/%s.json') % (filename_)
-            filedata_ = {
-                "machine_name": filename_,
-                "display_name": Module.Model.__name__,
-                "access": Module.Model.__def__.get('access'),
-                "fields": Module.Model.__def__.get('fields'),
-                "groups": Module.Model.__def__.get('groups'),
-            }
-
-            with io.open(filepath_, "w", encoding="utf-8") as file_:
-                data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
-                file_.write(unicode(data_))
-
-            return filedata_
-
-        else:
-            logger.info('`%s` module did not contain any model definitions.' %
-                        (Module.__name__))
+        # if hasattr(Module, 'Model') and hasattr(Module.Model, '__def__'):
+        #
+        #     filename_ = str(Module.Model.__tablename__)
+        #     filepath_ = ('app/static/models/%s.json') % (filename_)
+        #     filedata_ = {
+        #         "machine_name": filename_,
+        #         "display_name": Module.Model.__name__,
+        #         "access": Module.Model.__def__.get('access'),
+        #         "fields": Module.Model.__def__.get('fields'),
+        #         "groups": Module.Model.__def__.get('groups'),
+        #     }
+        #
+        #     with io.open(filepath_, "w", encoding="utf-8") as file_:
+        #         data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
+        #         file_.write(unicode(data_))
+        #
+        #     return filedata_
+        #
+        # else:
+        #     logger.info('`%s` module did not contain any model definitions.' %
+        #                 (Module.__name__))
 
     def load_modules(self):
         """Load all application modules.
@@ -413,17 +412,17 @@ class Application(object):
         """Create a single structure file that can be served to include
         information about this application.
         """
-        filepath_ = ('arith/static/models/all.json')
-        filedata_ = {
-            "application": {
-                "name": self.app.config['APP_NAME'],
-                "description": self.app.config['APP_DESCRIPTION'],
-                "license": self.app.config['APP_LICENSE'],
-                "version": self.app.config['APP_VERSION'],
-            },
-            "templates": definition_list
-        }
-
-        with io.open(filepath_, "w", encoding="utf-8") as file_:
-            data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
-            file_.write(unicode(data_))
+        # filepath_ = ('arith/static/models/all.json')
+        # filedata_ = {
+        #     "application": {
+        #         "name": self.app.config['APP_NAME'],
+        #         "description": self.app.config['APP_DESCRIPTION'],
+        #         "license": self.app.config['APP_LICENSE'],
+        #         "version": self.app.config['APP_VERSION'],
+        #     },
+        #     "templates": definition_list
+        # }
+        #
+        # with io.open(filepath_, "w", encoding="utf-8") as file_:
+        #     data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
+        #     file_.write(unicode(data_))
