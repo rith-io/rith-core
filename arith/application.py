@@ -218,7 +218,7 @@ class Application(object):
                                           'generic')
 
     def setup_database(self):
-        r"""Created all database tables."""
+        r"""Create all database tables."""
         logger.info('Application is setting up database')
 
         db.app = self.app
