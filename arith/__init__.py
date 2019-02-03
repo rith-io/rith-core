@@ -31,7 +31,10 @@ import logging
 import os
 
 
+from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
+from flask_security import Security
+from flask_oauthlib.provider import OAuth2Provider
 
 
 from raven.contrib.flask import Sentry
@@ -78,6 +81,17 @@ db = SQLAlchemy()
 
 """
 sentry = Sentry()
+
+
+"""OAuth Authorization.
+
+Initializes OAuth authorization support used throughout the system for access
+to endpoints and system functionality.
+
+See the official OAuthLib documentation for more information
+https://flask-oauthlib.readthedocs.io/en/latest/
+"""
+oauth = OAuth2Provider()
 
 
 """Consisitent System-wide Responses.
