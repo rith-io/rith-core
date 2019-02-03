@@ -28,6 +28,7 @@ from flask import request
 from flask_restless import APIManager
 from flask_security.signals import user_registered
 
+
 from . import db
 from . import flask
 from . import imp
@@ -38,12 +39,13 @@ from . import oauth
 from . import os
 from . import sentry
 from . import Security
-from . import tracker
+
 
 CORE_MODULES = [
     'core',
     'oauth',
 ]
+
 
 class Application(object):
     """Create Flask Application via a Class."""
