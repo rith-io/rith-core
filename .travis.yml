@@ -1,0 +1,15 @@
+os:
+  - linux
+  - osx
+dist:
+  - xenial
+  - trusty
+  - precise
+language:
+  - python
+python:
+  - '3.6'
+install:
+  - pip install -r ./requirements/development.txt
+script:
+  - nosetests -v
