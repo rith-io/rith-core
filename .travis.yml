@@ -3,12 +3,12 @@ language:
 matrix:
   include:
     - os: linux
-      python: 3.6
+      python: 3
       dist:
         - bionic
         - xenial
     - os: osx
-      python: 3.6
+      python: 3
 install:
   - pip install -r ./requirements/development.txt
 script:
