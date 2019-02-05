@@ -33,3 +33,7 @@ virtualenv -p python3 venv
 ```
 FLASK_APP=arith:create_application flask run
 ```
+
+```
+FLASK_APP=arith:create_application\(\"testing\"\) flask run
+```
