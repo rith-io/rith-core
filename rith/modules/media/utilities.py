@@ -18,7 +18,7 @@ under the License.
 """
 Import System Dependencies
 """
-import pexif
+# import pexif
 import sys
 
 import os.path
@@ -70,25 +70,25 @@ def thumbnail(image, width=1280, height=1280):
 """
 Save the image with a new Exif Rotation
 """
-def orientation(filepath, _new_orientation=1):
+# def orientation(filepath, _new_orientation=1):
 
-    logger.debug('[MEDIA utilities:orientation] Verifying orientation, JPEG files only, orientation to be set to `%s`' % (_new_orientation))
+#     logger.debug('[MEDIA utilities:orientation] Verifying orientation, JPEG files only, orientation to be set to `%s`' % (_new_orientation))
 
-    """
-    1. Open the file we need to modify
-    """
-    _image = pexif.JpegFile.fromFile(filepath)
+#     """
+#     1. Open the file we need to modify
+#     """
+#     _image = pexif.JpegFile.fromFile(filepath)
 
-    """
-    2. Set the new value so that we have consistency across the board
-    """
-    _image.exif.primary.Orientation = [_new_orientation]
+#     """
+#     2. Set the new value so that we have consistency across the board
+#     """
+#     _image.exif.primary.Orientation = [_new_orientation]
 
-    """
-    3. Write out the Exif data
-    """
-    _image.writeFile(filepath)
-    logger.debug('[MEDIA utilities:orientation] Orientation verification complete, _image write complete `%s`' % (_image))
+#     """
+#     3. Write out the Exif data
+#     """
+#     _image.writeFile(filepath)
+#     logger.debug('[MEDIA utilities:orientation] Orientation verification complete, _image write complete `%s`' % (_image))
 
 
 """
@@ -108,8 +108,8 @@ def create(image, name, suffix, extension, directory, size={}):
 
         temporary_image.save(filename=filepath)
 
-        if image.format is 'jpeg':
-            orientation(filepath)
+        # if image.format is 'jpeg':
+        #     orientation(filepath)
 
     logger.debug('[MEDIA utilities:create] Image creation process completed with filename:`%s`' % (filename))
     return filename
