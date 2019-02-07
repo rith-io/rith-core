@@ -70,7 +70,6 @@ class Seed(Endpoint):
 
             authorization = verify_authorization()
 
-
         else:
             abort(403)
 

@@ -120,7 +120,7 @@ def access_token():
 @login_required
 @oauth.authorize_handler
 def authorize(*args, **kwargs):
-    """Authorization handler."""
+    """Handle for authorization of login information."""
     next_url = url_for('oauth.authorize', **{
         'response_type': request.args.get('response_type'),
         'client_id': request.args.get('client_id'),
@@ -292,7 +292,7 @@ def save_token(token, oauth_request, *args, **kwargs):
 
 
 def _commit(response=None):
-    """Utility to commit to the security datastore."""
+    """Commit to the security datastore."""
     _datastore.commit()
 
     return response

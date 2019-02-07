@@ -314,7 +314,8 @@ class Seed(Endpoint):
 
         """
         token = generate_reset_password_token(user)
-        reset_link = url_for_security('reset_password', token=token, _external=True)
+        reset_link = url_for_security('reset_password', token=token,
+                                      _external=True)
 
         send_mail('An administrator has created an account for you',
                   user.email, 'staff', user=user, confirmation_link=reset_link)

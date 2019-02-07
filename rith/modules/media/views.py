@@ -48,26 +48,22 @@ from rith.permissions import verify_authorization
 @module.route('/v1/media/image', methods=['POST'])
 @oauth.require_oauth()
 def image_post(oauth_request):
-    """Image Post.
-    """
-    logger.debug('[MEDIA func:image_post; url:/v1/media/image; method:POST; require_oauth:true;]')
-
-    logger.debug('[MEDIA url:/v1/media/image] Begin processing image processing request')
+    """Image Post."""
+    logger.debug('Begin processing image processing request')
 
     """
     Check to see that one and only one file has been attached to this request
     before proceding with the file upload
     """
     if not len(request.files) or len(request.files) > 1:
-        logger.debug('[MEDIA url:/v1/media/image] No image was attached to the `files` in the request; Return 400 (Please attach a single file to this request)')
         return abort(400, 'Please attach a single file to this request')
 
     """Check to see if there is an `image` attribute in the `request.files`."""
     if 'image' not in request.files:
-        logger.debug('[MEDIA url:/v1/media/image] Failed to complete processing image processing request due to missing `image` attribute in `request.files`')
+        logger.debug('Missing `image` attribute in `request.files`')
 
     _file = request.files['image']
-    logger.debug('[MEDIA url:/v1/media/image] `image` attribute found in request.files with value of `%s`' % (_file))
+    logger.debug('request.files with value of `%s`' % (_file))
 
     """
     Upload the file to our server
@@ -75,7 +71,7 @@ def image_post(oauth_request):
     output = upload_image(_file)
 
     if not output:
-        logger.debug('[MEDIA url:/v1/media/image] Output from image processing return `None`')
+        logger.debug('Output from image processing return `None`')
         return jsonify(**{
             'code': 415,
             'status': 'Unsupported Media Type',
@@ -85,7 +81,7 @@ def image_post(oauth_request):
     """
     Create and Save the new Media object
     """
-    logger.debug('[MEDIA url:/v1/media/image] Ouput accepted as `%s`, proceeding to save Image object' % (output))
+    logger.debug('Ouput accepted as `%s`, save Image object' % (output))
     media = Image(**{
         'original': output['original'],
         'square': output['square'],
@@ -100,12 +96,12 @@ def image_post(oauth_request):
         'created_on': datetime.now().isoformat(),
         'creator_id': oauth_request.user.id
     })
-    logger.debug('[MEDIA url:/v1/media/image] Image object created successfully `%s`' % (media))
+    logger.debug('Image object created successfully `%s`' % (media))
 
     db.session.add(media)
     db.session.commit()
 
-    logger.debug('[MEDIA url:/v1/media/image] Image object committed to database')
+    logger.debug('Image object committed to database')
 
     """
     Return the finalized Image resource
@@ -129,7 +125,7 @@ def image_post(oauth_request):
         'caption_link': media.caption_link
     }
 
-    logger.debug('[MEDIA url:/v1/media/image] Completed processing image processing request; Return 200 (`%s`)' % (_return_value))
+    logger.debug('Completed processing image processing request')
     return jsonify(**_return_value), 200
 
 
@@ -182,18 +178,3 @@ def file_post(oauth_request):
         'filetype': media.filetype,
         'filesize': media.filesize
     }), 200
-
-
-# @module.route('/v1/media/file/<path:filename>', methods=['GET'])
-# def user_me_get(filename):
-
-#     if request.args.get('access_token', '') or \
-#             request.headers.get('Authorization'):
-
-#         authorization = verify_authorization()
-
-#         file = send_from_directory(current_app.config['MEDIA_DIRECTORY'], filename)
-
-#         return file
-
-#     abort(403)

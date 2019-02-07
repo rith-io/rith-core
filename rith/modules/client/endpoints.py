@@ -54,7 +54,6 @@ class Seed(Endpoint):
 
             authorization = verify_authorization()
 
-
         else:
             abort(403)
 
@@ -176,7 +175,7 @@ class Seed(Endpoint):
         logger.info('`client_postprocessor_update_single` used for endpoint')
 
     def client_postprocessor_update_many(query=None, data=None,
-                                        search_params=None, **kw):
+                                         search_params=None, **kw):
         """Create an Client specific PATCH_MANY and PATCH_SINGLE postprocessor.
 
         Accepts three arguments: `query`, which is the SQLAlchemy query
@@ -204,7 +203,7 @@ class Seed(Endpoint):
         logger.info('`client_postprocessor_delete_single` used for endpoint')
 
     def client_postprocessor_delete_many(result=None, search_params=None,
-                                        **kw):
+                                         **kw):
         """Create an Client specific DELETE_MANY postprocessor.
 
         Accepts two arguments: `result`, which is the dictionary

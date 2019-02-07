@@ -15,43 +15,34 @@ See the License for the specific language governing permission and limitations
 under the License.
 """
 
-"""
-Import System Dependencies
-"""
-# import pexif
-import sys
 
+import sys
 import os.path
 
-from uuid import uuid4
 
-"""
-Import Flask Dependencies
-"""
+from uuid import uuid4
 from werkzeug import secure_filename
+from wand.image import Image
+
 
 from flask import current_app
 
-from wand.image import Image
 
 from rith import logger
 
 
-"""
-Make sure that the file upload being attempted is of an allowed file type
-"""
 def allowed_file(filename):
-    logger.debug('[MEDIA utilities:allowed_file] Checking if file name is valid')
+    """Ensure file upload being attempted is of an allowed file type."""
+    logger.debug('Checking if file name is valid')
+    
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
-"""
-Create a square thumbnail based on an image, a width, and height
-"""
 def thumbnail(image, width=1280, height=1280):
+    """Create a square thumbnail based on an image, a width, and height."""
+    logger.debug('Thumbnail creation started')
 
-    logger.debug('[MEDIA utilities:thumbnail] Thumbnail creation started')
     dst_landscape = 1 > image.width / image.height
 
     wh = image.width if dst_landscape else image.height
@@ -67,35 +58,8 @@ def thumbnail(image, width=1280, height=1280):
     logger.debug('[MEDIA utilities:thumbnail] Thumbnail creation completed')
 
 
-"""
-Save the image with a new Exif Rotation
-"""
-# def orientation(filepath, _new_orientation=1):
-
-#     logger.debug('[MEDIA utilities:orientation] Verifying orientation, JPEG files only, orientation to be set to `%s`' % (_new_orientation))
-
-#     """
-#     1. Open the file we need to modify
-#     """
-#     _image = pexif.JpegFile.fromFile(filepath)
-
-#     """
-#     2. Set the new value so that we have consistency across the board
-#     """
-#     _image.exif.primary.Orientation = [_new_orientation]
-
-#     """
-#     3. Write out the Exif data
-#     """
-#     _image.writeFile(filepath)
-#     logger.debug('[MEDIA utilities:orientation] Orientation verification complete, _image write complete `%s`' % (_image))
-
-
-"""
-Create an image according to spec
-"""
 def create(image, name, suffix, extension, directory, size={}):
-
+    """Create an image according to spec."""
     logger.debug('[MEDIA utilities:create] Image creation process started')
 
     filename = name + suffix + extension
@@ -103,23 +67,17 @@ def create(image, name, suffix, extension, directory, size={}):
 
     with image.clone() as temporary_image:
 
-        if size.has_key('width') and size.has_key('height'):
+        if 'width' in size and 'height' in size:
             thumbnail(temporary_image, size.get('width'), size.get('height'))
 
         temporary_image.save(filename=filepath)
 
-        # if image.format is 'jpeg':
-        #     orientation(filepath)
-
-    logger.debug('[MEDIA utilities:create] Image creation process completed with filename:`%s`' % (filename))
+    logger.debug('Image creation completed with file:`%s`' % (filename))
     return filename
 
 
-"""
-Upload a File Object Directly to AmazonS3 and then return a URL to that image.
-"""
 def upload_image(source_file, acl='public-read'):
-
+    """Upload File Object."""
     logger.debug('[MEDIA utilities:upload_image] Image upload process started')
 
     basepath = current_app.config['MEDIA_BASE_PATH'] + 'images/'
@@ -137,11 +95,10 @@ def upload_image(source_file, acl='public-read'):
         image = Image(file=source_file)
         image.format = 'jpeg'
         image.compression_quality = 75
-        logger.debug('[MEDIA utilities:upload_image] Completed creating transformable image object `%s`' % (image))
-    except:
-        logger.debug('[MEDIA utilities:upload_image] Exception raised while creating transformable image object')
+        logger.debug('Completed creating image object `%s`' % (image))
+    except Exception:
+        logger.debug('Couldn\'t create transformable image object')
         raise
-
 
     try:
         """
@@ -180,9 +137,9 @@ def upload_image(source_file, acl='public-read'):
             'directory': directory
         })
 
-        logger.debug('[MEDIA utilities:upload_image] Completed rotating original orientation')
-    except:
-        logger.debug('[MEDIA utilities:upload_image] Exception raised while trying to rotate original orientation')
+        logger.debug('Completed rotating original orientation')
+    except Exception:
+        logger.debug('Exception raised trying to rotate original orientation')
         raise
 
     try:
@@ -267,26 +224,24 @@ def upload_image(source_file, acl='public-read'):
             'directory': directory
         })
 
-        logger.debug('[MEDIA utilities:upload_image] Image upload process complete')
+        logger.debug('Image upload process complete')
         return {
             'original': os.path.join(basepath, original_filename),
             'square': os.path.join(basepath, square_filename),
             'square_retina': os.path.join(basepath, square_retina_filename),
             'thumbnail': os.path.join(basepath, thumbnail_filename),
-            'thumbnail_retina': os.path.join(basepath, thumbnail_retina_filename),
+            'thumbnail_retina': os.path.join(basepath,
+                                             thumbnail_retina_filename),
             'icon': os.path.join(basepath, icon_filename),
             'icon_retina': os.path.join(basepath, icon_retina_filename)
         }
-    except:
-        logger.debug('[MEDIA utilities:upload_image] Exception raised while trying to create multiple formats')
+    except Exception:
+        logger.debug('Exception raised trying to create multiple formats')
         raise
 
 
-"""
-Upload a File Object Directly to our server and then return a URL to that file
-"""
 def upload_file(source_file, acl='public-read'):
-
+    """Upload a File Object Directly to our server."""
     logger.debug('[MEDIA utilities:upload_file] File upload process started')
 
     basepath = current_app.config['MEDIA_BASE_PATH']
@@ -302,13 +257,13 @@ def upload_file(source_file, acl='public-read'):
     fileurl = os.path.join(basepath, secure_filename)
 
     try:
-        logger.debug('[MEDIA utilities:upload_file] Saving file source information to server')
+        logger.debug('Saving file source information to server')
         source_file.save(filepath)
-    except:
-        logger.debug('[MEDIA utilities:upload_file] Exception raised while saving file source information to server')
+    except Exception:
+        logger.debug('Exception raised saving file source to server')
         raise
 
-    logger.debug('[MEDIA utilities:upload_file] File upload process completed with original:%s' % (fileurl))
+    logger.debug('File upload process completed with original:%s' % (fileurl))
     return {
         'original': fileurl
     }

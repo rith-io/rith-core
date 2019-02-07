@@ -306,8 +306,8 @@ class User(db.Model, UserMixin):
         'backref': db.backref('users')
     })
 
-    def __init__(self, email, password=None, active=False, background=None, 
-                 picture=None, title=None, organization_name=None, 
+    def __init__(self, email, password=None, active=False, background=None,
+                 picture=None, title=None, organization_name=None,
                  confirmed_at=None, last_login_at=None,
                  current_login_at=None, last_login_ip=None,
                  current_login_ip=None, login_count=0, roles=None,
