@@ -50,9 +50,9 @@ def core_index_get():
             'status': 200
         },
         'properties': {
-            'message': 'Welcome to the Arith.io Data API, for more information'
+            'message': 'Welcome to the Arithmetic Framework, for more information'
                        ' on using this application or to begin using this'
                        ' application in your organization contact'
-                       ' support@arith.io.'
+                       ' support@rith.io.'
         }
     })
