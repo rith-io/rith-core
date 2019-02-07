@@ -34,7 +34,7 @@ from flask import current_app
 
 from wand.image import Image
 
-from app import logger
+from rith import logger
 
 
 """
