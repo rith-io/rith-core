@@ -98,13 +98,13 @@ class Application(object):
         """
         self.load_extensions()
 
-        """Load system modules
-        """
-        self.load_modules()
-
         """Setup the Database
         """
         self.setup_database()
+
+        """Load system modules
+        """
+        self.load_modules()
 
         """Setup the Diagnostics
         """

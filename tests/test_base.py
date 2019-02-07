@@ -29,6 +29,14 @@ class AppTestCase(unittest.TestCase):
         _response = self.client.get("/v1")
         self.assertEqual(_response.status_code, 200)
 
+    def test_schema_user(self):
+        model = app.schema.user.User(email="test.user@viable.io")
+        self.assertIsNotNone(model)
+
+    def test_schema_role(self):
+        model = app.schema.role.Role
+        self.assertIsNotNone(model)
+
     def test_schema_oauth_client(self):
         model_client = app.schema.client.Client()
         self.assertIsNotNone(model_client)
@@ -39,10 +47,6 @@ class AppTestCase(unittest.TestCase):
         model_token = app.schema.token.Token()
         self.assertIsNotNone(model_token)
 
-    def test_schema_role(self):
-        model = app.schema.role.Role
-        self.assertIsNotNone(model)
-
     def test_schema_create_role(self):
         role_ = app.schema.role.Role
         new_role_ = role_(name="test_role")
@@ -51,10 +55,6 @@ class AppTestCase(unittest.TestCase):
     def test_api_role_get_many(self):
         _response = self.client.get("/v1/data/role")
         self.assertEqual(_response.status_code, 403)
-
-    def test_schema_user(self):
-        model = app.schema.user.User(email="test.user@viable.io")
-        self.assertIsNotNone(model)
 
     def test_schema_create_user(self):
         user_ = app.schema.user.User

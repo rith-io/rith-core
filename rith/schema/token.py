@@ -19,6 +19,9 @@ under the License.
 from rith import db
 
 
+from rith.schema.user import User
+
+
 class Token(db.Model):
     """Token database definition.
 

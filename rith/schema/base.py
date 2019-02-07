@@ -23,6 +23,9 @@ from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.orm.collections import InstrumentedList
 
 
+from rith.schema.user import User
+
+
 class BaseMixin(db.Model):
     """BaseMixin definition.
 

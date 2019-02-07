@@ -18,8 +18,8 @@ under the License.
 from flask import abort
 
 
-from app import logger
-from app import oauth
+from rith import logger
+from rith import oauth
 
 
 @oauth.require_oauth()

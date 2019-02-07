@@ -16,7 +16,7 @@ under the License.
 """
 
 
-from app import logger
+from rith import logger
 
 
 class Endpoint(object):
