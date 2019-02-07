@@ -311,7 +311,7 @@ class Application(object):
         if hasattr(Module, 'Model') and hasattr(Module.Model, '__def__'):
 
             filename_ = str(Module.Model.__tablename__)
-            filepath_ = ('app/static/models/%s.json') % (filename_)
+            filepath_ = ('rith/static/models/%s.json') % (filename_)
             filedata_ = {
                 "machine_name": filename_,
                 "display_name": Module.Model.__name__,
@@ -322,7 +322,7 @@ class Application(object):
 
             with io.open(filepath_, "w", encoding="utf-8") as file_:
                 data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
-                file_.write(unicode(data_))
+                file_.write(str(data_))
 
             return filedata_
 

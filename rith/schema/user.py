@@ -32,7 +32,6 @@ from rith import db
 from rith import logger
 
 
-from rith.schema.profile import Profile
 from rith.schema.role import Role
 
 
@@ -302,23 +301,17 @@ class User(db.Model, UserMixin):
     current_login_ip = db.Column(db.Text)
     login_count = db.Column(db.Integer)
 
-    profile_id = db.Column(db.Integer, db.ForeignKey('profile.id'))
-    profile = db.relationship('Profile', **{
-        'foreign_keys': 'User.profile_id',
-        'uselist': False
-    })
-
     roles = db.relationship('Role', **{
         'secondary': user_roles,
         'backref': db.backref('users')
     })
 
-    def __init__(self, email, password=None, active=False, first_name=None,
-                 last_name=None, background=None, picture=None, title=None,
-                 organization_name=None, confirmed_at=None, last_login_at=None,
+    def __init__(self, email, password=None, active=False, background=None, 
+                 picture=None, title=None, organization_name=None, 
+                 confirmed_at=None, last_login_at=None,
                  current_login_at=None, last_login_ip=None,
-                 current_login_ip=None, login_count=0, roles=[],
-                 organizations=[]):
+                 current_login_ip=None, login_count=0, roles=None,
+                 organizations=None):
         """Role schema definition constructor.
 
         @param (object) self

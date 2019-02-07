@@ -1,0 +1,32 @@
+{
+    "machine_name": "role",
+    "display_name": "Role",
+    "access": "private",
+    "fields": {
+        "name": {
+            "field_label": "Role Name",
+            "field_help": "",
+            "field_order": 1,
+            "component": {
+                "name": "textfield",
+                "options": {},
+                "group": "Role Information"
+            },
+            "is_editable": true,
+            "is_required": true
+        },
+        "description": {
+            "field_label": "Role Description",
+            "field_help": "",
+            "field_order": 2,
+            "component": {
+                "name": "textfield",
+                "options": {},
+                "group": "Role Information"
+            },
+            "is_editable": true,
+            "is_required": true
+        }
+    },
+    "groups": null
+}

@@ -39,13 +39,13 @@ from werkzeug.local import LocalProxy
 from werkzeug.security import gen_salt
 
 
-from risk import db
-from risk import logger
-from risk import oauth
-from risk import responses
-from risk.schema.client import Client
-from risk.schema.grant import Grant
-from risk.schema.token import Token
+from rith import db
+from rith import logger
+from rith import oauth
+from rith import responses
+from rith.schema.client import Client
+from rith.schema.grant import Grant
+from rith.schema.token import Token
 
 
 from . import module
