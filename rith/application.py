@@ -412,7 +412,7 @@ class Application(object):
         """Create a single structure file that can be served to include
         information about this application.
         """
-        filepath_ = ('arith/static/models/all.json')
+        filepath_ = ('rith/static/models/all.json')
         filedata_ = {
             "application": {
                 "name": self.app.config['APP_NAME'],

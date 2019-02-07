@@ -20,7 +20,7 @@ from flask import jsonify
 from flask import redirect
 
 
-from arith import oauth
+from rith import oauth
 
 
 from . import module
