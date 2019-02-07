@@ -102,3 +102,5 @@ ENV/
 app/static/models/*.json
 
 travis_rsa
+
+.vscode
