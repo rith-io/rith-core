@@ -50,7 +50,7 @@ def core_index_get():
             'status': 200
         },
         'properties': {
-            'message': 'Welcome to the Arithmetic Framework, for more information'
+            'message': 'Welcome to the Arithmetic Framework, for information'
                        ' on using this application or to begin using this'
                        ' application in your organization contact'
                        ' support@rith.io.'

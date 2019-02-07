@@ -24,5 +24,5 @@ from . import logger
 
 class Utilities(object):
     """Placeholder for any system-wide utilities."""
-    
+
     pass

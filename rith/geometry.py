@@ -22,6 +22,6 @@ from geoalchemy2.functions import GenericFunction
 
 class ST_GeomFromGeoJSON(GenericFunction):
     """Add ST_GeomFromGeoJSON capabilities to geoalchemy2."""
-    
+
     name = 'ST_GeomFromGeoJSON'
     type = Geometry
