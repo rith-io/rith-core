@@ -102,4 +102,5 @@ def default_values(*args, **kwargs):
 
     db.session.commit()
 
+
 event.listen(Role.__table__, 'after_create', default_values)
