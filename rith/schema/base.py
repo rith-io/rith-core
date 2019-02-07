@@ -16,7 +16,7 @@ under the License.
 """
 
 
-from arith import db
+from rith import db
 
 
 from sqlalchemy.ext.declarative import declared_attr
