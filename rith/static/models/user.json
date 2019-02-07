@@ -1,0 +1,215 @@
+{
+    "machine_name": "user",
+    "display_name": "User",
+    "access": "private",
+    "fields": {
+        "email": {
+            "field_label": "Email Address",
+            "field_help": "A valid email address (not public)",
+            "field_order": 1,
+            "component": {
+                "name": "textfield",
+                "options": {
+                    "max-length": 0,
+                    "allowed_characters": "ascii"
+                },
+                "group": "User Information"
+            },
+            "is_editable": true,
+            "is_required": true
+        },
+        "password": {
+            "field_label": "Password",
+            "field_help": "",
+            "field_order": 2,
+            "component": {
+                "name": "password",
+                "options": {},
+                "group": "User Information"
+            },
+            "is_editable": true,
+            "is_required": true
+        },
+        "active": {
+            "field_label": "Active",
+            "field_help": "",
+            "field_order": 3,
+            "component": {
+                "name": "boolean",
+                "options": {},
+                "group": "User Information"
+            },
+            "is_editable": true,
+            "is_required": true
+        },
+        "first_name": {
+            "field_label": "First Name",
+            "field_help": "",
+            "field_order": 1,
+            "component": {
+                "name": "textfield",
+                "options": {},
+                "group": "User Profile"
+            },
+            "is_editable": true,
+            "is_required": false
+        },
+        "last_name": {
+            "field_label": "Last Name",
+            "field_help": "",
+            "field_order": 2,
+            "component": {
+                "name": "textfield",
+                "options": {},
+                "group": "User Profile"
+            },
+            "is_editable": true,
+            "is_required": false
+        },
+        "background": {
+            "field_label": "Background",
+            "field_help": "",
+            "field_order": 3,
+            "component": {
+                "name": "textarea",
+                "options": {},
+                "group": "User Profile"
+            },
+            "is_editable": true,
+            "is_required": false
+        },
+        "picture": {
+            "field_label": "Profile Picture",
+            "field_help": "",
+            "field_order": 4,
+            "component": {
+                "name": "image",
+                "options": {
+                    "allowed_extensions": [
+                        "JPG",
+                        "jpg",
+                        "JPEG",
+                        "jpeg",
+                        "GIF",
+                        "gif",
+                        "PNG",
+                        "png"
+                    ],
+                    "multiple": false
+                },
+                "group": "User Profile"
+            },
+            "is_editable": true,
+            "is_required": false
+        },
+        "title": {
+            "field_label": "Title",
+            "field_help": "",
+            "field_order": 1,
+            "component": {
+                "name": "textfield",
+                "options": {},
+                "group": "Job Information"
+            },
+            "is_editable": true,
+            "is_required": false
+        },
+        "organization_name": {
+            "field_label": "Organization Name",
+            "field_help": "",
+            "field_order": 2,
+            "component": {
+                "name": "textfield",
+                "options": {},
+                "group": "Job Information"
+            },
+            "is_editable": true,
+            "is_required": false
+        },
+        "roles": {
+            "field_label": "Roles",
+            "field_help": "",
+            "field_order": 1,
+            "component": {
+                "name": "relationship",
+                "options": {},
+                "group": "Roles"
+            },
+            "is_editable": true,
+            "is_required": true
+        },
+        "confirmed_at": {
+            "field_label": "Confirmed At",
+            "field_help": "",
+            "field_order": 1,
+            "component": {
+                "name": "datetime",
+                "options": {},
+                "group": "Account History"
+            },
+            "is_editable": false,
+            "is_required": true
+        },
+        "last_login_at": {
+            "field_label": "Last Login At",
+            "field_help": "",
+            "field_order": 2,
+            "component": {
+                "name": "datetime",
+                "options": {},
+                "group": "Account History"
+            },
+            "is_editable": false,
+            "is_required": true
+        },
+        "current_login_at": {
+            "field_label": "Current Login At",
+            "field_help": "",
+            "field_order": 4,
+            "component": {
+                "name": "datetime",
+                "options": {},
+                "group": "Account History"
+            },
+            "is_editable": false,
+            "is_required": true
+        },
+        "last_login_ip": {
+            "field_label": "Last Login IP",
+            "field_help": "",
+            "field_order": 3,
+            "component": {
+                "name": "textfield",
+                "options": {},
+                "group": "Account History"
+            },
+            "is_editable": false,
+            "is_required": true
+        },
+        "current_login_ip": {
+            "field_label": "Current Login IP",
+            "field_help": "",
+            "field_order": 5,
+            "component": {
+                "name": "textfield",
+                "options": {},
+                "group": "Account History"
+            },
+            "is_editable": false,
+            "is_required": true
+        },
+        "login_count": {
+            "field_label": "Login Count",
+            "field_help": "",
+            "field_order": 6,
+            "component": {
+                "name": "number",
+                "options": {},
+                "group": "Account History"
+            },
+            "is_editable": false,
+            "is_required": true
+        }
+    },
+    "groups": null
+}

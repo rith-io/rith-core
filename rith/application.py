@@ -94,6 +94,8 @@ class Application(object):
         """
         self.app.after_request(self.setup_default_cors)
 
+        self.manager = APIManager(self.app, flask_sqlalchemy_db=db)
+
         """Load system extensions
         """
         self.load_extensions()
@@ -264,8 +266,6 @@ class Application(object):
         https://flask-restless.readthedocs.org/en/latest/api.html#\
         flask_restless.APIManager.create_api
         """
-        manager = APIManager(self.app, flask_sqlalchemy_db=db)
-
         if hasattr(Module, 'endpoints'):
             """Legacy Support."""
 
@@ -274,7 +274,7 @@ class Application(object):
                 module_arguments = Module.endpoints.Seed().__arguments__
 
                 with self.app.app_context():
-                    manager.create_api(Module.Model, **module_arguments)
+                    self.manager.create_api(Module.Model, **module_arguments)
                     logger.info('`%s` module endpoints loaded' %
                                 (Module.__name__))
             else:
@@ -288,7 +288,7 @@ class Application(object):
                 module_arguments = Module.__arguments__
 
                 with self.app.app_context():
-                    manager.create_api(Module.Model, **module_arguments)
+                    self.manager.create_api(Module.Model, **module_arguments)
                     logger.info('`%s` module endpoints loaded' %
                                 (Module.__name__))
             else:

@@ -35,4 +35,4 @@ module = Blueprint(**{
 
 if module:
     """Verify module Blueprint is instantiated."""
-    from . import endpoints
+    from . import views
