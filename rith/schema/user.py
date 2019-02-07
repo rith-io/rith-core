@@ -335,8 +335,6 @@ class User(db.Model, UserMixin):
         self.email = email
         self.password = password
         self.active = active
-        self.first_name = first_name
-        self.last_name = last_name
         self.background = background
         self.picture = picture
         self.title = title
@@ -347,8 +345,8 @@ class User(db.Model, UserMixin):
         self.last_login_ip = last_login_ip
         self.current_login_ip = current_login_ip
         self.login_count = login_count
-        self.roles = roles
-        self.organizations = organizations
+        self.roles = roles if roles else []
+        self.organizations = organizations if organizations else []
 
     def set_password(self, password):
         """Generate a password hash based on user input.

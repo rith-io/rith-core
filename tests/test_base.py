@@ -21,34 +21,31 @@ class AppTestCase(unittest.TestCase):
         self.app = rith.create_application(environment="testing")
         self.client = self.app.test_client()
 
-    def test_api_client(self):
-        self.assertIsNotNone(self.client)
-
     """Default Viable Data Tests."""
     def test_api_index(self):
         _response = self.client.get("/v1")
         self.assertEqual(_response.status_code, 200)
 
     def test_schema_user(self):
-        model = app.schema.user.User(email="test.user@viable.io")
+        model = rith.schema.user.User(email="test@rith.io")
         self.assertIsNotNone(model)
 
     def test_schema_role(self):
-        model = app.schema.role.Role
+        model = rith.schema.role.Role
         self.assertIsNotNone(model)
 
     def test_schema_oauth_client(self):
-        model_client = app.schema.client.Client()
+        model_client = rith.schema.client.Client()
         self.assertIsNotNone(model_client)
 
-        model_grant = app.schema.grant.Grant()
+        model_grant = rith.schema.grant.Grant()
         self.assertIsNotNone(model_grant)
 
-        model_token = app.schema.token.Token()
+        model_token = rith.schema.token.Token()
         self.assertIsNotNone(model_token)
 
     def test_schema_create_role(self):
-        role_ = app.schema.role.Role
+        role_ = rith.schema.role.Role
         new_role_ = role_(name="test_role")
         self.assertIsNotNone(new_role_)
 
@@ -57,8 +54,7 @@ class AppTestCase(unittest.TestCase):
         self.assertEqual(_response.status_code, 403)
 
     def test_schema_create_user(self):
-        user_ = app.schema.user.User
-        new_user_ = user_(email="test.user@viable.io")
+        new_user_ = rith.schema.user.User(email="test@rith.io")
         self.assertIsNotNone(new_user_)
 
     def test_api_user_get_many(self):
@@ -72,9 +68,9 @@ class AppTestCase(unittest.TestCase):
 
     """System-specific unit tests."""
     def test_schema_file(self):
-        model = app.schema.file.File()
+        model = rith.schema.file.File()
         self.assertIsNotNone(model)
 
     def test_schema_image(self):
-        model = app.schema.image.Image()
+        model = rith.schema.image.Image()
         self.assertIsNotNone(model)
