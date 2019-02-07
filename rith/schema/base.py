@@ -143,7 +143,6 @@ class BaseMixin(db.Model):
 
         :return (list) list_
         """
-
         list_ = []
 
         for relationship_ in self.__def__["relationships"]:
