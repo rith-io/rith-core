@@ -1,4 +1,4 @@
-"""Arith ErrorHandlers for Built-in Flask errors.
+"""Arithmetic ErrorHandlers for Built-in Flask errors.
 
 Created by Joshua Powell on 02/02/2019.
 
