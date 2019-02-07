@@ -348,8 +348,6 @@ class Application(object):
         modules_list = {}
         definition_list = []
 
-        print("modules_directory", modules_directory)
-
         for module_name in modules_directory:
 
             module_path = os.path.join(modules_path, module_name)
