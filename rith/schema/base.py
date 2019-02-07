@@ -25,7 +25,7 @@ from sqlalchemy.orm.collections import InstrumentedList
 
 class BaseMixin(db.Model):
 
-    __abstract__  = True
+    __abstract__ = True
 
     """Feature Identifier."""
     id = db.Column(db.Integer, primary_key=True)
@@ -75,20 +75,29 @@ class BaseMixin(db.Model):
 
         list_ = []
 
-        #
-        # Make sure our relationship is a list
-        #
         if type(objects_) == InstrumentedList or type(objects_) == "list":
             for object_ in objects_:
+
+                name_ = "Unnamed"
+
+                if object_.__dict__[field_]:
+                    name_ = object_.__dict__[field_]
+
                 list_.append({
                     "id": object_.__dict__["id"],
-                    "name": object_.__dict__[field_] if object_.__dict__[field_] else "Unnamed"
+                    "name": name_
                 })
         else:
             if hasattr(objects_, '__dict__'):
+
+                name_ = "Unnamed"
+
+                if object_.__dict__[field_]:
+                    name_ = object_.__dict__[field_]
+
                 list_.append({
                     "id": objects_.__dict__["id"],
-                    "name": objects_.__dict__[field_] if objects_.__dict__[field_] else "Unnamed"
+                    "name": name_
                 })
 
         return list_
