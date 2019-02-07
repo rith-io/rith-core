@@ -24,6 +24,13 @@ from sqlalchemy.orm.collections import InstrumentedList
 
 
 class BaseMixin(db.Model):
+    """BaseMixin definition.
+
+    The `BaseMixin` definition used throughout the system to extend
+    data models with basic fields.
+
+    @param (object) db.Model
+    """
 
     __abstract__ = True
 
@@ -50,10 +57,20 @@ class BaseMixin(db.Model):
     """Feature User Association."""
     @declared_attr
     def creator_id(cls):
+        """Declare the creator_id field.
+
+        :param (object) cls
+        :return db.Column
+        """
         return db.Column(db.Integer, db.ForeignKey('user.id'))
 
     @declared_attr
     def created_by(cls):
+        """Declare the created_by field.
+
+        :param (object) cls
+        :return db.relationship
+        """
         return db.relationship('User', **{
             'foreign_keys': cls.creator_id,
             'uselist': False
@@ -62,17 +79,34 @@ class BaseMixin(db.Model):
     """Feature Modified by User Association."""
     @declared_attr
     def last_modified_by_id(cls):
+        """Declare the last_modified_by_id field.
+
+        :param (object) cls
+        :return db.Column
+        """
         return db.Column(db.Integer, db.ForeignKey('user.id'))
 
     @declared_attr
     def last_modified_by(cls):
+        """Declare the last_modified_by field.
+
+        :param (object) cls
+        :return db.relationship
+        """
         return db.relationship('User', **{
             'foreign_keys': cls.last_modified_by_id,
             'uselist': False
         })
 
     def get_related_data_values(self, objects_, field_):
+        """Get all values for specific relationship.
 
+        :param (object) self
+        :param (list) objects_
+        :param (string) field_
+
+        :return (list) list_
+        """
         list_ = []
 
         if type(objects_) == InstrumentedList or type(objects_) == "list":
@@ -103,6 +137,12 @@ class BaseMixin(db.Model):
         return list_
 
     def related_data(self):
+        """Get data relationships for specific data model.
+
+        :param (object) self
+
+        :return (list) list_
+        """
 
         list_ = []
 
