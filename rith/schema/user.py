@@ -162,7 +162,16 @@ class User(db.Model, UserMixin):
                 "component": {
                     "name": "image",
                     "options": {
-                        "allowed_extensions": ["JPG","jpg","JPEG","jpeg","GIF","gif","PNG","png"],
+                        "allowed_extensions": [
+                            "JPG",
+                            "jpg",
+                            "JPEG",
+                            "jpeg",
+                            "GIF",
+                            "gif",
+                            "PNG",
+                            "png"
+                        ],
                         "multiple": False
                     },
                     "group": "User Profile"
@@ -389,6 +398,7 @@ class User(db.Model, UserMixin):
             # 'last_name': self.last_name,
             # 'picture': self.picture,
         }
+
 
 """Setup User/Role Datastore for Flask Security.
 
