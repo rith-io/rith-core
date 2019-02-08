@@ -1,4 +1,4 @@
-"""Arith Data API.
+"""Arithmetic Data API.
 
 Created by Joshua Powell on 02/02/2019.
 

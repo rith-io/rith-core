@@ -1,4 +1,4 @@
-"""Arith Configuration Package.
+"""Arithmetic Configuration Package.
 
 Created by Joshua Powell on 02/02/2019.
 

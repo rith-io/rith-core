@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Arith Geospatial Data API.
+"""Arithmetic Geospatial Data API.
 """
 
 from setuptools import setup

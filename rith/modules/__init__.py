@@ -1,4 +1,4 @@
-"""Arith Modules Package.
+"""Arithmetic Modules Package.
 
 Created by Joshua Powell on 02/02/2019.
 
