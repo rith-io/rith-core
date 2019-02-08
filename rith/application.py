@@ -83,12 +83,13 @@ class Application(object):
 
         """Import all custom app configurations
         """
-        _config = ('config/%s.config') % (environment)
+        project_dir = os.getcwd()
+        config_ = ('%s/config/%s.json') % (project_dir, environment)
 
         """Read the JSON configuration file content.
         """
-        logger.info('Application loading configuration from %s', _config)
-        self.app.config.from_json(_config)
+        logger.info('Application loading configuration from %s', config_)
+        self.app.config.from_json(config_)
 
         """Setup Cross Site Origin header rules
         """
@@ -311,7 +312,7 @@ class Application(object):
         if hasattr(Module, 'Model') and hasattr(Module.Model, '__def__'):
 
             filename_ = str(Module.Model.__tablename__)
-            filepath_ = ('rith/static/models/%s.json') % (filename_)
+            filepath_ = ('%s/static/models/%s.json') % (os.getcwd(), filename_)
             filedata_ = {
                 "machine_name": filename_,
                 "display_name": Module.Model.__name__,
@@ -412,7 +413,7 @@ class Application(object):
         """Create a single structure file that can be served to include
         information about this application.
         """
-        filepath_ = ('rith/static/models/all.json')
+        filepath_ = ('%s/static/models/all.json') % (os.getcwd())
         filedata_ = {
             "application": {
                 "name": self.app.config['APP_NAME'],
@@ -423,6 +424,11 @@ class Application(object):
             "templates": definition_list
         }
 
-        with io.open(filepath_, "w", encoding="utf-8") as file_:
-            data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
-            file_.write(str(data_))
+        try:
+            with io.open(filepath_, "w", encoding="utf-8") as file_:
+                data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
+                file_.write(str(data_))
+        except FileNotFoundError:
+            print("Please create a `static/models` directory in your project root.")
+        except Exception:
+            print("An unknown error occurred.")
