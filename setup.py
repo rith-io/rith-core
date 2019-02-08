@@ -16,10 +16,11 @@ with io.open('README.rst', 'rt', encoding='utf8') as f:
 setup(
     name="rith",
     version="0.0.10",
-    description="Arithmetic helps you create production-ready APIs so that your team can build faster, smarter, and more secure.",
+    description="Arithmetic is a simple framework for creating production-ready APIs so that your team can build faster, smarter, and more secure.",
     long_description=readme,
     url="https://github.com/rith-io/rith-core",
     author="Joshua Powell",
+    maintainer="Arithmetic Framework Team",
     license="MIT",
     keywords="python geospatial location api",
     packages=find_packages(),
