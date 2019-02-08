@@ -14,8 +14,14 @@ To create a virtual environment with Python 3 compatibility execute the
 following command in the API root.
 
 .. code:: 
-    virtualenv -p python3 venv
+virtualenv -p python3 venv
 
+.. code:: python
+
+  def my_function():
+      "just a test"
+      print 8/2
+      
 Start Your Virtual Environment
 ------------------------------
 .. code::
