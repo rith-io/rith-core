@@ -1,4 +1,4 @@
-image::https://travis-ci.org/rith-io/rith-core.svg?branch=master
+.. image::https://travis-ci.org/rith-io/rith-core.svg?branch=master
 
 Arithmetic Framework
 ====================
