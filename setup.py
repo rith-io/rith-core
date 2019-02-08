@@ -7,7 +7,7 @@ from setuptools import setup
 
 setup(
     name="rith",
-    version="0.0.1",
+    version="0.0.2",
     description="An open-source geospatial API",
     url="https://github.com/joshuapowell/arith",
     author="Joshua Powell",
