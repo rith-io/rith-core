@@ -55,8 +55,7 @@ SYSTEM_FILES = [
 class Application(object):
     """Create Flask Application via a Class."""
 
-    def __init__(self, environment, name, testing=False,
-                 app=None, extensions={}):
+    def __init__(self, environment, name, app=None, extensions={}):
         """Application Constructor.
 
         Setup our base Flask application, retaining it as our application
@@ -76,7 +75,6 @@ class Application(object):
         self.name = name
         self.environment = environment
         self.extensions = extensions
-        self.testing = testing
 
         """Create our base Flask application
         """
@@ -85,9 +83,9 @@ class Application(object):
 
         """Import all custom app configurations
         """
-        if self.testing:
+        try:
             self.project_dir = os.getcwd() + "/rith"
-        else:
+        except Exception:
             self.project_dir = os.getcwd()
 
         config_ = ('%s/config/%s.json') % (self.project_dir, environment)

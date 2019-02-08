@@ -93,7 +93,7 @@ No official documentation yet exists.
 responses = responses.Responses()
 
 
-def create_application(environment='production', testing=False):
+def create_application(environment='production'):
     """Production Application Runner."""
     from . import application
     from . import errors
@@ -110,8 +110,7 @@ def create_application(environment='production', testing=False):
     """
     instance = application.Application(
         name="__main__",
-        environment=environment,
-        testing=testing
+        environment=environment
     )
 
     """Instaniate App-level error handling
