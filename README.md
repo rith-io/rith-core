@@ -5,6 +5,32 @@ Arithmetic helps you create production-ready APIs so that your team can build fa
 
 # Getting Started
 
+### Virtual Environment
+When working with the API source code, it is recommended to create a virtual
+environment using `virtualenv`. The API requires your virtual environment to
+use Python 3.x.
+
+To create a virtual environment with Python 3 compatibility execute the
+following command in the API root.
+
+```
+virtualenv -p python3 venv
+```
+
+### Start Your Virtual Environment
+```
+source venv/bin/active
+```
+
+### Install Arithmetic
+Now you can install Arithmetic inside of the virtual environment.
+
+```
+pip install rith
+```
+
+# Contributing
+
 ## Manual Installation
 If you would like to install the API source code, in order to contribute,
 please read the CONTRIBUTION GUIDELINES, and ensure that your system has the
