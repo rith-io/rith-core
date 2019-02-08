@@ -37,3 +37,8 @@ FLASK_APP=arith:create_application flask run
 ```
 FLASK_APP=arith:create_application\(\"testing\"\) flask run
 ```
+
+### Manually Generate a PyPi Package
+```
+python setup.py sdist bdist_wheel
+```
