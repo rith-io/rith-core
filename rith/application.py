@@ -55,7 +55,8 @@ SYSTEM_FILES = [
 class Application(object):
     """Create Flask Application via a Class."""
 
-    def __init__(self, environment, name, testing=False, app=None, extensions={}):
+    def __init__(self, environment, name, testing=False,
+                 app=None, extensions={}):
         """Application Constructor.
 
         Setup our base Flask application, retaining it as our application
@@ -84,8 +85,11 @@ class Application(object):
 
         """Import all custom app configurations
         """
-        self.project_dir = os.getcwd() + "/rith" if self.testing else os.getcwd()
-        
+        if self.testing:
+            self.project_dir = os.getcwd() + "/rith"
+        else:
+            self.project_dir = os.getcwd()
+
         config_ = ('%s/config/%s.json') % (self.project_dir, environment)
 
         """Read the JSON configuration file content.
@@ -314,7 +318,8 @@ class Application(object):
         if hasattr(Module, 'Model') and hasattr(Module.Model, '__def__'):
 
             filename_ = str(Module.Model.__tablename__)
-            filepath_ = ('%s/static/models/%s.json') % (self.project_dir, filename_)
+            filepath_ = ('%s/static/models/%s.json') % (self.project_dir,
+                                                        filename_)
             filedata_ = {
                 "machine_name": filename_,
                 "display_name": Module.Model.__name__,
@@ -431,6 +436,6 @@ class Application(object):
                 data_ = json.dumps(filedata_, ensure_ascii=False, indent=4)
                 file_.write(str(data_))
         except FileNotFoundError:
-            print("Please create a `static/models` directory in your project root.")
+            print("Please create a `static/models` folder.")
         except Exception:
             print("An unknown error occurred.")
