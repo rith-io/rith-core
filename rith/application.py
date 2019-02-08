@@ -55,7 +55,7 @@ SYSTEM_FILES = [
 class Application(object):
     """Create Flask Application via a Class."""
 
-    def __init__(self, environment, name, app=None, extensions={}):
+    def __init__(self, environment, name, testing=False, app=None, extensions={}):
         """Application Constructor.
 
         Setup our base Flask application, retaining it as our application
@@ -75,6 +75,7 @@ class Application(object):
         self.name = name
         self.environment = environment
         self.extensions = extensions
+        self.testing = testing
 
         """Create our base Flask application
         """
@@ -83,8 +84,9 @@ class Application(object):
 
         """Import all custom app configurations
         """
-        project_dir = os.getcwd()
-        config_ = ('%s/config/%s.json') % (project_dir, environment)
+        self.project_dir = os.getcwd() + "/rith" if self.testing else os.getcwd()
+        
+        config_ = ('%s/config/%s.json') % (self.project_dir, environment)
 
         """Read the JSON configuration file content.
         """
@@ -312,7 +314,7 @@ class Application(object):
         if hasattr(Module, 'Model') and hasattr(Module.Model, '__def__'):
 
             filename_ = str(Module.Model.__tablename__)
-            filepath_ = ('%s/static/models/%s.json') % (os.getcwd(), filename_)
+            filepath_ = ('%s/static/models/%s.json') % (self.project_dir, filename_)
             filedata_ = {
                 "machine_name": filename_,
                 "display_name": Module.Model.__name__,
@@ -413,7 +415,7 @@ class Application(object):
         """Create a single structure file that can be served to include
         information about this application.
         """
-        filepath_ = ('%s/static/models/all.json') % (os.getcwd())
+        filepath_ = ('%s/static/models/all.json') % (self.project_dir)
         filedata_ = {
             "application": {
                 "name": self.app.config['APP_NAME'],

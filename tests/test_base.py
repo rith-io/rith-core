@@ -18,7 +18,7 @@ import unittest
 class AppTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = rith.create_application(environment="testing")
+        self.app = rith.create_application(environment="testing", testing=True)
         self.client = self.app.test_client()
 
     """Default Viable Data Tests."""
