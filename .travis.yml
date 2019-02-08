@@ -19,3 +19,7 @@ before_script:
   - psql -c 'CREATE EXTENSION postgis;' -U postgres -d testing_arith_io
 script:
   - tox
+deploy:
+  provider: pypi
+  user: $PYPI_USERNAME
+  password: $PYPI_PASSWORD
