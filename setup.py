@@ -8,9 +8,9 @@ from setuptools import find_packages
 
 setup(
     name="rith",
-    version="0.0.4",
-    description="An open-source geospatial API",
-    url="https://github.com/joshuapowell/arith",
+    version="0.0.5",
+    description="Arithmetic helps you create production-ready APIs so that your team can build faster, smarter, and more secure.",
+    url="https://github.com/rith-io/rith-core",
     author="Joshua Powell",
     license="MIT",
     keywords="python geospatial location api",
