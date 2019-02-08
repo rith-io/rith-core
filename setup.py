@@ -3,16 +3,21 @@
 """Arithmetic Geospatial Data API.
 """
 
+
+import io
 from setuptools import setup
 from setuptools import find_packages
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+
+with io.open('README.md', 'rt', encoding='utf8') as f:
+    readme = f.read()
+
 
 setup(
     name="rith",
-    version="0.0.7",
+    version="0.0.8",
     description="Arithmetic helps you create production-ready APIs so that your team can build faster, smarter, and more secure.",
+    long_description=readme,
     url="https://github.com/rith-io/rith-core",
     author="Joshua Powell",
     license="MIT",
