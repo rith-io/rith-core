@@ -1,4 +1,4 @@
-[<img src="https://travis-ci.org/joshuapowell/arith.svg?branch=master" />](https://travis-ci.org/joshuapowell/arith)
+[<img src="https://travis-ci.org/rith-io/rith-core.svg?branch=master" />](https://travis-ci.org/rith-io/rith-core)
 
 # Arithmetic Framework
 Arithmetic helps you create production-ready APIs so that your team can build faster, smarter, and more secure.
