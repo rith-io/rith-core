@@ -1,0 +1,1 @@
+include rith/modules/* rith/config/* rith/schema/* rith/static/*
