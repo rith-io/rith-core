@@ -1,4 +1,4 @@
-[<img src="https://travis-ci.org/rith-io/rith-core.svg?branch=master" />](https://travis-ci.org/rith-io/rith-core)
+<img src="https://travis-ci.org/rith-io/rith-core.svg?branch=master" />
 
 Arithmetic Framework
 ====================
