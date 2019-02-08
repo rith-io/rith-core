@@ -13,7 +13,8 @@ use Python 3.x.
 To create a virtual environment with Python 3 compatibility execute the
 following command in the API root.
 
-.. code:: virtualenv -p python3 venv
+.. code:: 
+    virtualenv -p python3 venv
 
 Start Your Virtual Environment
 ------------------------------
