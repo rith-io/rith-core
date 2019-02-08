@@ -32,6 +32,19 @@ setup(
         "geoalchemy2",
         "flask-oauthlib",
         "requests",
-        "psycopg2"
-    ]
+        "psycopg2-binary",
+        "Wand"
+    ],
+    extras_require={
+        'dev': [
+            'bandit',
+            'nose',
+            'pycodestyle',
+            'pydocstyle',
+            'pylint',
+            'tox',
+            'twine',
+        ],
+        'docs': []
+    },
 )
