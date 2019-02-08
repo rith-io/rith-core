@@ -8,7 +8,7 @@ from setuptools import find_packages
 
 setup(
     name="rith",
-    version="0.0.3",
+    version="0.0.4",
     description="An open-source geospatial API",
     url="https://github.com/joshuapowell/arith",
     author="Joshua Powell",
