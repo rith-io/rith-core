@@ -8,10 +8,10 @@ from setuptools import find_packages
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-    
+
 setup(
     name="rith",
-    version="0.0.6",
+    version="0.0.7",
     description="Arithmetic helps you create production-ready APIs so that your team can build faster, smarter, and more secure.",
     url="https://github.com/rith-io/rith-core",
     author="Joshua Powell",
