@@ -34,7 +34,7 @@ from rith import logger
 def allowed_file(filename):
     """Ensure file upload being attempted is of an allowed file type."""
     logger.debug('Checking if file name is valid')
-    
+
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
