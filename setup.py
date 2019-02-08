@@ -15,7 +15,7 @@ with io.open('README.md', 'rt', encoding='utf8') as f:
 
 setup(
     name="rith",
-    version="0.0.8",
+    version="0.0.9",
     description="Arithmetic helps you create production-ready APIs so that your team can build faster, smarter, and more secure.",
     long_description=readme,
     url="https://github.com/rith-io/rith-core",
