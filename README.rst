@@ -13,20 +13,20 @@ use Python 3.x.
 To create a virtual environment with Python 3 compatibility execute the
 following command in the API root.
 
-.. code
-virtualenv -p python3 venv
+.. code::
+  virtualenv -p python3 venv
 
 Start Your Virtual Environment
 ------------------------------
-.. code
-source venv/bin/activate
+.. code::
+  source venv/bin/activate
 
 Install Arithmetic
 ------------------
 Now you can install Arithmetic inside of the virtual environment.
 
-.. code
-pip install rith
+.. code::
+  pip install rith
 
 Contributing
 ============
@@ -51,16 +51,16 @@ use Python 3.x.
 To create a virtual environment with Python 3 compatibility execute the
 following command in the API root.
 
-.. code
-virtualenv -p python3 venv
+.. code::
+  virtualenv -p python3 venv
 
 Start Development Environment
 -----------------------------
-.. code
-FLASK_APP=arith:create_application flask run
+.. code::
+  FLASK_APP=arith:create_application flask run
 
-.. code
-FLASK_APP=arith:create_application\(\"testing\"\) flask run
+.. code::
+  FLASK_APP=arith:create_application\(\"testing\"\) flask run
 
 Manually Generate a PyPi Package
 --------------------------------
